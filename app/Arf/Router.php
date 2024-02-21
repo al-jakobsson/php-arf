@@ -1,10 +1,9 @@
 <?php
 
-namespace Core;
+namespace Arf;
 
 class Router
 {
-    public array $routes = [];
 
     public function getProtocol(): string
     {

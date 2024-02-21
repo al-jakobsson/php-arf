@@ -2,7 +2,7 @@
 
 namespace Views;
 
-use Core\Safe;
+use Arf\Safe;
 
 /** @var string $title pageData -- The title of the page */
 /** @var string $heading pageData -- The page heading */

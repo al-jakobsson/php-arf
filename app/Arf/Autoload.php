@@ -1,10 +1,10 @@
 <?php
 
-namespace Core;
+namespace Arf;
 
 class Autoload {
 
-    public static function arfAutoloader( $class )
+    public static function arfAutoloader( $class ): void
     {
         $classPath = str_replace('\\', '/', $class);
 

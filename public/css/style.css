@@ -1,0 +1,9 @@
+* {
+    --arf-blue: #5959b4;
+
+    font-family: sans-serif;
+}
+
+h1 {
+    color: var(--arf-blue);
+}
