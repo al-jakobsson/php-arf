@@ -9,6 +9,8 @@ class Controller
         $controllerName = $controllerName . "Controller";
         $path = __DIR__ . "/../Controllers/$controllerName.php";
 
+        $lowercaseControllerName = strtolower($controllerName);
+
         $fileContent =
             <<<CONTROLLER_CLASS_DEFINITION
             <?php

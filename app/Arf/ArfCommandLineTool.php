@@ -5,12 +5,16 @@ namespace Arf;
 
 class ArfCommandLineTool
 {
-    const int COMMAND = 1;
-    const int TYPE = 2;
-    const int NAME = 3;
+    const COMMAND = 1;
+    const TYPE = 2;
+    const NAME = 3;
 
-    const int CONTROLLER_NAME = 3;
-    const int CONTROLLER_METHOD = 4;
+    const METHOD = 3;
+    const PATH = 4;
+    const CONTROLLER_NAME = 5;
+    const CONTROLLER_METHOD = 6;
+    
+    public const ARF = "ARF";
 
     public function __construct(
         public int $argumentCount,
@@ -84,6 +88,12 @@ class ArfCommandLineTool
                 }
                 $this->createNewRoute();
                 break;
+            case 'arf':
+                if (!$this->arguments[self::NAME]) {
+                    echo "You must enter a name for your Arf, e.g. 'new Arf User" . PHP_EOL;
+                    break;
+                }
+                $this->createNewArf();
 
             default:
                 echo "Arf doesn't understand type: {$this->arguments[self::TYPE]}" . PHP_EOL;
@@ -125,10 +135,33 @@ class ArfCommandLineTool
 
     private function createNewRoute(): void
     {
+        $method = strtoupper($this->arguments[self::METHOD]);
+        $path = $this->arguments[self::PATH];
         $controllerName = ucfirst($this->arguments[self::CONTROLLER_NAME]);
         $controllerMethod = strtolower($this->arguments[self::CONTROLLER_METHOD]);
 
-        Route::create(new Route($controllerName, $controllerMethod));
+        Route::create(new Route($method, $path, $controllerName, $controllerMethod));
+    }
+
+    private function createNewArf(): void
+    {
+        $arfControllerName = ucfirst($this->arguments[self::CONTROLLER_NAME]);
+
+        echo "Creating Arf for $arfControllerName" . PHP_EOL;
+
+        self::createNewMVC();
+
+        Route::create(
+            new Route(
+                method: self::ARF,
+                path: self::ARF,
+                controllerName: $arfControllerName, 
+                controllerMethod: self::ARF
+            )
+        );
+
+        echo "Created Arf - $arfControllerName" . PHP_EOL;
+
     }
 
 }
