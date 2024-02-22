@@ -14,10 +14,10 @@ use Arf\Safe;
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= Safe::html($title ?? 'Bogus')?>></title>
+    <title><?= Safe::html($title ?? 'User')?>></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1><?= Safe::html($title ?? 'Bogus page')?></h1>
+    <h1><?= Safe::html($title ?? 'User page')?></h1>
 </body>
 </html>

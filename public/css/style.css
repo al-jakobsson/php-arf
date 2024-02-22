@@ -2,8 +2,29 @@
     --arf-blue: #5959b4;
 
     font-family: sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     color: var(--arf-blue);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+
+    li {
+        list-style-type: none;
+        padding: 10px;
+    }
+}
+
+
+div.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100dvh;
 }

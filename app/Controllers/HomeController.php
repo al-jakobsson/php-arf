@@ -2,21 +2,29 @@
 
 namespace Controllers;
 
+use Arf\PageConfiguration;
 use Arf\View;
 
 class HomeController
 {
-    public const EMPTY_PATH = '/';
-    public const HOME_PATH = '/home';
-
-    public const LOGIN_PATH = '/login';
     
-    public static function home()
+    public static function home(): void
     {
-        View::render('HomePage', ['title' => 'Welcome!', 'heading' => 'Welcome Home']);
+        View::renderPage(
+            new PageConfiguration(
+                'HomePage',
+                [
+                    'title' => 'Welcome!',
+                    'beforeContent' => [
+                      'Components/Navbar' => []
+                    ],
+                    'pageData' => ['heading' => 'Arf!'],
+                ]
+            )
+        );
     }
 
-    public static function login()
+    public static function login(): void
     {
         View::render('LoginPage', []);
     }

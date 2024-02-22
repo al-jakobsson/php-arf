@@ -2,12 +2,13 @@
 
 namespace Controllers;
 
-class BogusController 
+class UserController 
 {
     
     public static function index()
     {
     // Logic for handling index route here
+        echo "<h1>User</h1>";
     }
     
     public static function show()

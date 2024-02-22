@@ -28,7 +28,8 @@ class Router
         return parse_url($_SERVER("REQUEST_URI"), PHP_URL_PATH);
     }
 
-    public function findRoute($requestUri, $requestMethod) {
+    public function findRoute($requestUri, $requestMethod): ?array
+    {
         $routes = include('Routes.php');
         foreach ($routes as $route) {
             $pattern = "@^" . preg_replace('/:\\w+/', '([^/]+)', $route->path) . "$@D";
@@ -43,7 +44,8 @@ class Router
         return null;
     }
 
-    public function dispatch() {
+    public function dispatch(): void
+    {
         $uri = parse_url($_SERVER("REQUEST_URI"), PHP_URL_PATH);
         $method = $_SERVER['REQUEST_METHOD'];
 

@@ -33,7 +33,7 @@ class Safe
      */
     public static function csrf(): void
     {
-        $csrf_token = $_SESSION['csrf_token'];
-        View::render('components/csrf_token', ['csrf_token' => $csrf_token]);
+        $CSRFToken = $_SESSION['csrf_token'];
+        View::render('Components/CSRFToken', ['csrf_token' => $CSRFToken]);
     }
 }

@@ -6,9 +6,11 @@ class PageConfiguration
 {
     public string $view;
     public string $title;
-    public string $header = 'components/page-header';
-    public array $beforeContent = ['components/navbar' => []];
-    public array $afterContent = ['components/page-footer' => []];
+    public string $header = 'Components/DefaultPageHeader';
+    public array $beforeContent = [];
+    public array $afterContent = [];
+
+    public string $footer = 'Components/DefaultPageFooter';
     public array $pageData = [];
 
     /**
@@ -16,12 +18,11 @@ class PageConfiguration
      * @param string $title
      * @param array $options Set values for: @var string $header, @var array $beforeContent, @var array $afterContent, @var array $pageData
      */
-    public function __construct(string $view, string $title, array $options = [])
+    public function __construct(string $view, array $pageData = [])
     {
         $this->view = $view;
-        $this->title = $title;
 
-        foreach ($options as $key => $value) {
+        foreach ($pageData as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->$key = $value;
             }
