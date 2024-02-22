@@ -94,7 +94,7 @@ class ArfCommandLineTool
                     break;
                 }
                 $this->createNewArf();
-
+                break;
             default:
                 echo "Arf doesn't understand type: {$this->arguments[self::TYPE]}" . PHP_EOL;
         }
@@ -145,22 +145,22 @@ class ArfCommandLineTool
 
     private function createNewArf(): void
     {
-        $arfControllerName = ucfirst($this->arguments[self::CONTROLLER_NAME]);
+        $arfName = ucfirst($this->arguments[self::NAME]);
 
-        echo "Creating Arf for $arfControllerName" . PHP_EOL;
+        echo "Creating Arf for $arfName" . PHP_EOL;
 
         self::createNewMVC();
 
         Route::create(
             new Route(
                 method: self::ARF,
-                path: self::ARF,
-                controllerName: $arfControllerName, 
+                path: strtolower($arfName),
+                controllerName: $arfName, 
                 controllerMethod: self::ARF
             )
         );
 
-        echo "Created Arf - $arfControllerName" . PHP_EOL;
+        echo "Created Arf - $arfName" . PHP_EOL;
 
     }
 

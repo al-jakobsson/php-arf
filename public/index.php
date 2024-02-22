@@ -17,17 +17,22 @@ Arf\Autoload::register();
  * @section Route requests to their respective controller methods
  */
 
-use Controllers\HomeController;
+// use Controllers\HomeController;
 
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-switch ($path){
-    case HomeController::HOME_PATH:
-        HomeController::home();
-        break;
-    case HomeController::LOGIN_PATH:
-        HomeController::login();
-        break;
-    default:
-        echo "Uh oh. 404";
-}
+// switch ($path){
+//     case HomeController::HOME_PATH:
+//         HomeController::home();
+//         break;
+//     case HomeController::LOGIN_PATH:
+//         HomeController::login();
+//         break;
+//     default:
+//         echo "Uh oh. 404";
+// }
+
+use Arf\Router;
+
+$router = new Router();
+$router->dispatch();

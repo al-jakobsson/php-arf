@@ -35,7 +35,7 @@ class Route
             $fileContentRoutes .=
                 <<<CONTENT_ROUTE
                 
-                    new Route('{$route->path}', {$route->controllerName}', '{$route->controllerMethod}'),
+                    new Route("{$route->method}", "{$route->path}", "{$route->controllerName}", "{$route->controllerMethod}"),
                 CONTENT_ROUTE;
 
         }
