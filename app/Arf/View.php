@@ -59,13 +59,14 @@ class View
     {
         extract($pageData);
 
-        $file = __DIR__ . "/../Views/" . $view . ".php";
+        $filePath = __DIR__ . "/../Views/" . $view . ".php";
 
-        if (file_exists($file)) {
-            require $file;
+        if (file_exists($filePath)) {
+            $parsed = SealTemplateEngine::parse($filePath);
+            echo $parsed;
         } else {
             // handle errors
-            echo "error: could not find view at $file";
+            echo "error: could not find view at $filePath";
         }
     }
 

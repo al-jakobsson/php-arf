@@ -30,5 +30,9 @@ use Arf\View;
         <li>test 3</li>
     </ul>
 
+    <?php foreach ([1, 2, 3] as $e): ?>
+        <div>a</div>
+    <?php endforeach; ?>
+
 </body>
 </html>

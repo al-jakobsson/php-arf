@@ -19,6 +19,16 @@ class Safe
         return htmlspecialchars($string, $flags, $encoding, $double_encode);
     }
 
+    public static function text(string $dangerousText)
+    {
+        // Not implemented
+    }
+
+    public static function url(string $dangerousURL)
+    {
+        // Not implemented
+    }
+
     /**
      * Return a URL-encoded parameter string
      */

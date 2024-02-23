@@ -17,20 +17,26 @@ Arf\Autoload::register();
  * @section Route requests to their respective controller methods
  */
 
+use Arf\SealTemplateEngine;
+use Arf\View;
 use Controllers\HomeController;
 use Controllers\TestController;
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($path){
-    case HomeController::HOME_PATH:
+    case '/':
         HomeController::home();
         break;
-    case HomeController::LOGIN_PATH:
+    case '/login':
         HomeController::login();
         break;
     case '/test':
         TestController::index();
+        break;
+    case '/seal':
+        // echo SealTemplateEngine::parse(__DIR__ . '/../app/Views/Seal.seal.php');
+        View::render('Seal.seal');
         break;
     default:
         echo "Uh oh. 404";
