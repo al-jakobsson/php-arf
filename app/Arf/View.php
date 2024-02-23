@@ -81,6 +81,7 @@ class View
         self::renderComponents($config->beforeContent);
         self::render($config->view, $config->pageData);
         self::renderComponents($config->afterContent);
+        self::render($config->footer);
     }
 
     private static function renderComponents(array $components): void

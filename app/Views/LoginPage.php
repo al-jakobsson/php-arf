@@ -3,6 +3,7 @@
 namespace Views;
 
 use Arf\Safe;
+use Arf\View;
 
 /** @var string $title The title of the page */
 ?>
@@ -18,6 +19,6 @@ use Arf\Safe;
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1><?= Safe::html($title ?? 'Login page')?></h1>
+    <h1><?= Safe::html($title ?? 'Login page') ?></h1>
 </body>
 </html>

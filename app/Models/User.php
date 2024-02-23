@@ -2,44 +2,24 @@
 
 namespace Models;
 
-use Database\Database;
-
-class User {
+class User 
+{
+    // Initialize member variables here
 
     public function __construct(
-        public int $id,
-        public string $name,
-        public string $email,
-        public string $password
+    // You can also initialize member variables in the signature of the constructor
     ){}
-
-    public static function createUsersTable()
+    
+    public static function all()
     {
-        $pdo = Database::getPDO();
-        $stmt = $pdo->query(
-            <<<CREATE_USERS_TABLE
-            CREATE TABLE IF NOT EXISTS users (
-                user_id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(255) NOT NULL,
-                email VARCHAR(255) NOT NULL UNIQUE,
-                password VARCHAR(255) NOT NULL
-            ) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
-            CREATE_USERS_TABLE
-
-        );
-
-        $pdo->exec($stmt);
+    // Implement logic here to get all instances of User from the database
     }
-
-    public static function all(): array
+    
+    public static function getUserById(int $id)
     {
-        $pdo = Database::getPDO();
-        $stmt = $pdo->query(
-            <<<ALL_USERS_QUERY
-            SELECT users.*, users.*
-            FROM users;
-            ALL_USERS_QUERY
-
-        );
+    // Implement logic here to get one instance of User from the database by an id
     }
+    
+    // Implement other methods here
+
 }
