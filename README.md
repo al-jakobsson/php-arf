@@ -1,5 +1,9 @@
+
+![][arf-logo-3.png]
+
 Arf!
 
-Al's rad framework! Or the sound a seal makes...
-
 A very simple PHP framework for PHP 8 that doesn't require any dependencies. No Composer, No NPM...
+
+
+[arf-logo-3.png]: 'arf-logo-3.png'
