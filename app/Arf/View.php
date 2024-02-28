@@ -62,8 +62,7 @@ class View
         $filePath = __DIR__ . "/../Views/" . $view . ".php";
 
         if (file_exists($filePath)) {
-            $parsed = SealTemplateEngine::parse($filePath);
-            echo $parsed;
+            include($filePath);
         } else {
             // handle errors
             echo "error: could not find view at $filePath";

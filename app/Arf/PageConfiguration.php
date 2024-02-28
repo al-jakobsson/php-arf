@@ -15,14 +15,13 @@ class PageConfiguration
 
     /**
      * @param string $view
-     * @param string $title
-     * @param array $options Set values for: @var string $header, @var array $beforeContent, @var array $afterContent, @var array $pageData
+     * @param array $options Set values for: @var string $title @var string $header, @var array $beforeContent, @var array $afterContent, @var array $pageData
      */
-    public function __construct(string $view, array $pageData = [])
+    public function __construct(string $view, array $options = [])
     {
         $this->view = $view;
 
-        foreach ($pageData as $key => $value) {
+        foreach ($options as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->$key = $value;
             }

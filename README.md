@@ -3,6 +3,7 @@
 
 Arf!
 
-A very simple PHP framework for PHP 8 that doesn't require any dependencies. No Composer, No NPM...
+A very simple MVC framework for PHP 8 that doesn't require any dependencies.
 
+Uh, under construction...
 
