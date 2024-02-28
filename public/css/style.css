@@ -21,10 +21,9 @@ nav ul {
 }
 
 
-div.center {
+div.centered {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-    height: 100dvh;
 }

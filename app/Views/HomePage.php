@@ -8,7 +8,7 @@ use Arf\Safe;
 
 ?>
 
-<div class="center">
+<div class="centered">
     <h1><?= Safe::html($heading ?? 'Home') ?></h1>
     <p>Welcome to your first Arf page.</p>
 </div>
