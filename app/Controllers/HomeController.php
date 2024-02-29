@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-use Arf\PageConfiguration;
 use Arf\View;
 
 class HomeController
