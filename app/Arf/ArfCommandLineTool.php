@@ -154,8 +154,8 @@ class ArfCommandLineTool
         Route::create(
             new Route(
                 method: self::ARF,
-                path: strtolower($arfName),
-                controllerName: $arfName, 
+                path: '/' . strtolower($arfName) . 's',
+                controllerName: $arfName . 'Controller',
                 controllerMethod: self::ARF
             )
         );

@@ -13,7 +13,7 @@ class Route
     ){}
     public static function create(Route $newRoute)
     {
-        $allRoutes = include('Routes.php');
+        $allRoutes = include(__DIR__ . '/../Routes/Routes.php');
 
         $newRoutes = ($newRoute->controllerMethod === ArfCommandLineTool::ARF)
             ? [
@@ -40,7 +40,6 @@ class Route
 
         }
 
-
         $fileContentBeforeRoutes =
             <<<CONTENT_BEFORE
             <?php 
@@ -57,7 +56,7 @@ class Route
 
         $fileContent = $fileContentBeforeRoutes . $fileContentRoutes . $fileContentAfterRoutes;
 
-        $path = __DIR__ . "/Routes.php";
+        $path = __DIR__ . "/../Routes/Routes.php";
 
         if (!is_dir(dirname($path))) {
             mkdir(dirname($path), 0777, true);
@@ -67,7 +66,7 @@ class Route
 
         file_put_contents($path, $fileContent);
 
-        echo "Created route {$newRoute->controllerName} => {$newRoute->controllerMethod} in app/Arf/Routes.php" . PHP_EOL;
+        echo "Created route {$newRoute->controllerName} => {$newRoute->controllerMethod} in app/Routes/Routes.php" . PHP_EOL;
 
     }
 }

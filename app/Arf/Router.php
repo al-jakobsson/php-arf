@@ -2,8 +2,18 @@
 
 namespace Arf;
 
+use Arf\Route;
+
 class Router
 {
+    public array $routes;
+
+    public function __construct(
+
+    )
+    {
+        $this->routes = include(__DIR__ . '/../Routes/Routes.php');
+    }
 
     public function getMethod(): string
     {
@@ -25,46 +35,7 @@ class Router
 
     public function getURI(): string
     {
-        return parse_url($_SERVER("REQUEST_URI"), PHP_URL_PATH);
-    }
-
-    public function findRoute($requestUri, $requestMethod): ?array
-    {
-        $routes = include('Routes.php');
-        foreach ($routes as $route) {
-            $pattern = "@^" . preg_replace('/:\\w+/', '([^/]+)', $route->path) . "$@D";
-            $matches = [];
-
-            if ($requestMethod == $route->method && preg_match($pattern, $requestUri, $matches)) {
-                array_shift($matches); // Remove the full pattern match
-                return ['route' => $route, 'params' => $matches];
-            }
-        }
-
-        return null;
-    }
-
-    public function dispatch(): void
-    {
-        $uri = parse_url($_SERVER("REQUEST_URI"), PHP_URL_PATH);
-        $method = $_SERVER['REQUEST_METHOD'];
-
-        $routeInfo = $this->findRoute($uri, $method);
-        if ($routeInfo) {
-            $controllerName = $routeInfo['route']->controller;
-            $actionName = $routeInfo['route']->action;
-            $params = $routeInfo['params'];
-
-            if (class_exists($controllerName) && method_exists($controllerName, $actionName)) {
-                call_user_func_array([$controllerName, $actionName], $params);
-            } else {
-                header("HTTP/1.0 404 Not Found");
-                echo "404 Not Found";
-            }
-        } else {
-            header("HTTP/1.0 404 Not Found");
-            echo "404 Not Found";
-        }
+        return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
 
     public function getRequestURL()
@@ -74,5 +45,50 @@ class Router
         $uri = $this->getURI();
 
         return $protocol . $host . $uri;
+    }
+
+    public function dispatch()
+    {
+        $requestMethod = $this->getMethod();
+        $requestPath = $this->getURI();
+
+        preg_match('/\/(\d+)(\/|$)/', $requestPath, $matches);
+        $id = $matches[1] ?? null;
+
+        $modifiedPath = preg_replace('/\/\d+(\/|$)/', '/:id$1', $requestPath);
+
+        $routeToExecute = null;
+        $routeParams = [$id]; // To store parameters from the route
+
+        foreach ($this->routes as $route) {
+            if ($route->method === $requestMethod && $route->path === $modifiedPath) {
+                $routeToExecute = $route;
+                break;
+            }
+        }
+
+        if ($routeToExecute) {
+
+            $controllerFilePath = __DIR__ . '/../Controllers/' . $routeToExecute->controllerName . '.php';
+            if (file_exists($controllerFilePath)) {
+                require_once $controllerFilePath;
+
+                $fullyQualifiedClassName = 'Controllers\\' . $routeToExecute->controllerName;
+                if (class_exists($fullyQualifiedClassName)) {
+                    $controller = new $fullyQualifiedClassName();
+                    if (method_exists($controller, $routeToExecute->controllerMethod)) {
+                        call_user_func_array([$controller, $routeToExecute->controllerMethod], $routeParams);
+                    } else {
+                        echo "Method not found.";
+                    }
+                } else {
+                    echo "Controller class not found.";
+                }
+            } else {
+                echo "Controller file not found.";
+            }
+        } else {
+            echo "Couldn't find a matching route.";
+        }
     }
 }

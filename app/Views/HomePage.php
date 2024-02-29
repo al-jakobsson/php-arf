@@ -14,7 +14,7 @@ use Arf\Safe;
 
 <main>
     <h1><?= Safe::html($heading ?? 'Home') ?></h1>
-    <img src="/images/arf-logo-3.png" alt="Arf logo" height="300px">
+    <img src="/images/arf-logo-3.png" alt="Arf logo" height="400px">
     <p>Welcome to your first Arf page.</p>
 </main>
 
