@@ -1,5 +1,5 @@
 
-![Arf logo](arf-logo-3.png)
+![Arf logo](/public/images/arf-logo.png)
 
 Arf!
 
