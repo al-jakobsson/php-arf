@@ -3,18 +3,27 @@
 namespace Controllers;
 
 use Arf\View;
+use Models\User;
 
 class UserController
 {
     
     public static function index()
     {
-        View::render('UserPage', ['title' => 'Useeers']);
+        $users = User::all();
+        View::render('User/UserIndex', ['title' => 'Users', 'users' => $users]);
     }
     
     public static function show(int $id)
     {
-        View::render('UserShowPage', ['id' => $id]);
+        $user = User::getUserById($id);
+
+        if ($user) {
+            View::render('User/ShowUser', ['user' => $user]);
+        } else {
+            View::render('User/UserNotFound');
+        }
+
     }
     
     public static function create()
