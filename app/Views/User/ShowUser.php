@@ -10,7 +10,7 @@ use Models\User;
 
 ?>
 
-<?php View::render('Components/DefaultPageHeader'); ?>
+<?php View::render('Components/DefaultPageHeader', ['title' => 'User ' . $user->id]); ?>
 <?php View::render('Components/Navbar'); ?>
 
 <main>
