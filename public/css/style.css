@@ -13,17 +13,28 @@ h1 {
 nav ul {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 10vh;
 
     li {
         list-style-type: none;
         padding: 10px;
     }
+
+    li > a {
+        text-decoration: none;
+    }
 }
 
-
-div.centered {
+main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    height: 90vh;
+
+    > * {
+        margin: 10px;
+        padding: 10px;
+    }
 }
