@@ -73,15 +73,14 @@ class User
             $stmt->execute();
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($row) {
-                return new User(
+
+            return $row
+                ? new User(
                     id: $row['user_id'],
                     name: $row['user_name'],
                     email: $row['user_email']
-                );
-            } else {
-                return null;
-            }
+                )
+                : null;
 
         } catch (PDOException $e) {
             throw new PDOException($e->getMessage(), (int)$e->getCode());

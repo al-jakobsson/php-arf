@@ -4,21 +4,26 @@ namespace Arf;
 
 class SealTemplateEngine
 {
-    public static function parse($templateFilePath)
+    public static function parse($templateFilePath, array $pageData = [])
     {
-        $template = file_get_contents($templateFilePath); // Load your template
+        extract($pageData);
 
-        // Replace custom tags with PHP code
+        /** Load the template file */
+        $template = file_get_contents($templateFilePath);
+
+        /** Replace custom tags with PHP code */
         $phpCode = str_replace(
-            ['{foreach ', ':}', '{/foreach}', '{if ', '{/if}'],
-            ['<?php foreach (', '): ?>', '<?php endforeach; ?>', '<?php if (', '<?php endif; ?>'],
+            ['<foreach ', ': >', '</foreach>', '<if ', '</if>', '<elseif ', '</elseif>', '<else>', '</else>', '<safe>', '</safe>'],
+            ['<?php foreach (', '): ?>', '<?php endforeach; ?>', '<?php if (', '<?php endif; ?>', '<?php elseif (', '', '<?php else: ?>', '', '<?= htmlspecialchars(', ') ?>'],
             $template
         );
 
-        ob_start();
-        eval('?>' . $phpCode);
-        $output = ob_get_clean();
+        /** Evaluate PHP code in buffer and return the result */
 
-        return $output;
+        ob_start();
+
+        eval('?>' . $phpCode);
+
+        return ob_get_clean();
     }
 }

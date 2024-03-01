@@ -57,12 +57,13 @@ class View
      */
     public static function render(string $view, array $pageData = []): void
     {
-        extract($pageData);
+//        extract($pageData);
 
         $filePath = __DIR__ . "/../Views/" . $view . ".php";
 
         if (file_exists($filePath)) {
-            include($filePath);
+            $content = SealTemplateEngine::parse($filePath, $pageData);
+            echo $content;
         } else {
             // handle errors
             echo "error: could not find view at $filePath";

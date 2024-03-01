@@ -2,7 +2,6 @@
 
 namespace Views;
 
-use Arf\Safe;
 use Arf\View;
 use Models\User;
 
@@ -14,16 +13,16 @@ use Models\User;
 <?php View::render('Components/Navbar'); ?>
 
 <main>
-    <h1><?= Safe::html($title ?? 'Users')?></h1>
+    <h1><safe>$title ?? 'Users index page'</safe></h1>
 
     <ul>
-        <?php foreach ($users as $user): ?>
-            <li>
-                <a href="/users/<?= Safe::html($user->id) ?>">
-                    <?= Safe::html($user->name) ?>
-                </a>
-            </li>
-        <?php endforeach ?>
+    <foreach $users as $user: >
+        <li>
+            <a href="/users/<safe>$user->id</safe>">
+                <safe>$user->name</safe>
+            </a>
+        </li>
+    </foreach>
     </ul>
 
 </main>

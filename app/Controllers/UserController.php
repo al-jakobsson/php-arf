@@ -11,7 +11,7 @@ class UserController
     public static function index()
     {
         $users = User::all();
-        View::render('User/UserIndex', ['title' => 'Users', 'users' => $users]);
+        View::render('User/UserIndexPage', ['title' => 'Users', 'users' => $users]);
     }
     
     public static function show(int $id)
@@ -19,9 +19,9 @@ class UserController
         $user = User::getUserById($id);
 
         if ($user) {
-            View::render('User/ShowUser', ['user' => $user]);
+            View::render('User/ShowUserPage', ['user' => $user]);
         } else {
-            View::render('User/UserNotFound');
+            View::render('User/UserNotFoundPage');
         }
 
     }
