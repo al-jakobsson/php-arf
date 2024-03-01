@@ -3,7 +3,7 @@ namespace Arf;
 
 return [
     new Route("GET", "/", "HomeController", "home"),
-    new Route("GET", "/seal", "HomeController", "seal"),
+    new Route("GET", "/fizzbuzz", "FizzbuzzController", "fizzbuzz"),
     new Route("GET", "/users", "UserController", "index"),
     new Route("GET", "/users/:id", "UserController", "show"),
     new Route("GET", "/users/new", "UserController", "new"),

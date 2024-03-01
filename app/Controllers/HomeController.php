@@ -12,9 +12,4 @@ class HomeController
         View::render('HomePage', ['heading' => 'Arf!']);
     }
 
-    public static function seal(): void
-    {
-        View::render('SealPage.seal');
-    }
-
 }
