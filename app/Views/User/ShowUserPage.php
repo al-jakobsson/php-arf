@@ -6,23 +6,42 @@ use Arf\Safe;
 use Arf\View;
 use Models\User;
 
-/** @var User $user pageData -- The user to show */
+/**
+ * pageData:
+ * @var User $user The user to show
+ */
 
 ?>
 
-<?php View::render('Components/DefaultPageHeader', ['title' => 'User ' . $user->id]); ?>
-<?php View::render('Components/Navbar'); ?>
+<?php
+View::render(
+    view: 'Components/DefaultPageHeader',
+    pageData: [
+        'title' => 'User ' . $user->id,
+        'stylesheets' => ['/css/user.css']
+    ]
+);
+?>
+
+<?php View::render(view: 'Components/Navbar'); ?>
 
 <main>
+    <nav class="crumbs">
+        <ol>
+            <li class="crumb"><a href="/users">Users</a></li>
+            <li class="crumb"><?= Safe::html($user->name) ?></li>
+        </ol>
+    </nav>
     <h1><?= Safe::html($user->name) ?></h1>
     <ul>
         <li>ID: <?= Safe::html($user->id) ?></li>
+        <li>Name: <?= Safe::html($user->name) ?></li>
         <li>Email: <?= Safe::html($user->email) ?></li>
+        <li>Date and time created: <?= Safe::html($user->created_at) ?></li>
     </ul>
-    <a href="/users">Back to users</a>
 </main>
 
-<?php View::render('Components/DefaultPageFooter'); ?>
+<?php View::render(view: 'Components/DefaultPageFooter'); ?>
 
 
 

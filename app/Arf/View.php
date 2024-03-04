@@ -4,6 +4,7 @@ namespace Arf;
 
 class View
 {
+    const string DEFAULT_STYLESHEET = '/css/style.css';
     public static function create($viewName): void
     {
         $viewShortName = $viewName;
@@ -85,11 +86,29 @@ class View
         self::render($config->footer);
     }
 
+    /**
+     * Include
+     * @param string[] $stylesheets Url to stylesheet
+     * @return void
+     */
+    public static function includeStylesheets(array $stylesheets): void
+    {
+        if (!in_array(self::DEFAULT_STYLESHEET, $stylesheets)) {
+            $stylesheets[] = self::DEFAULT_STYLESHEET;
+        }
+
+        foreach ($stylesheets as $stylesheet) {
+            echo "<link rel='stylesheet' href='$stylesheet'>";
+        }
+    }
+
     private static function renderComponents(array $components): void
     {
         foreach ($components as $component => $data) {
             self::render($component, $data);
         }
     }
+
+
 
 }

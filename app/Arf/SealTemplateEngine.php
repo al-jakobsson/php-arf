@@ -14,7 +14,7 @@ class SealTemplateEngine
         /** Replace custom tags with PHP code */
         $phpCode = str_replace(
             ['<foreach ', ': >', '</foreach>', '<if ', '</if>', '<elseif ', '</elseif>', '<else>', '</else>', '<safe>', '</safe>'],
-            ['<?php foreach (', '): ?>', '<?php endforeach; ?>', '<?php if (', '<?php endif; ?>', '<?php elseif (', '', '<?php else: ?>', '', '<?= htmlspecialchars(', ') ?>'],
+            ['<?php foreach (', '): ?><?= PHP_EOL; ?>', '<?php endforeach; ?><?= PHP_EOL; ?>', '<?php if (', '<?php endif; ?>', '<?php elseif (', '', '<?php else: ?>', '', '<?= htmlspecialchars(', ') ?>'],
             $template
         );
 

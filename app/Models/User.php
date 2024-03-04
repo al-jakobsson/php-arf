@@ -14,7 +14,8 @@ class User
     // You can also initialize member variables in the signature of the constructor
         public int $id,
         public string $name,
-        public string $email
+        public string $email,
+        public string $created_at
     ){}
 
     public static function createUsersTable(PDO $pdo): void
@@ -52,7 +53,8 @@ class User
                 $allUsers[] = new User(
                   id: $row['user_id'],
                   name: $row['user_name'],
-                  email: $row['user_email']
+                  email: $row['user_email'],
+                  created_at: $row['user_created_at']
                 );
             }
             return $allUsers;
@@ -78,7 +80,8 @@ class User
                 ? new User(
                     id: $row['user_id'],
                     name: $row['user_name'],
-                    email: $row['user_email']
+                    email: $row['user_email'],
+                    created_at: $row['user_created_at']
                 )
                 : null;
 

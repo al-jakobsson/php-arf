@@ -13,51 +13,26 @@ use Models\Fizzbuzz;
 
 ?>
 
-<?php View::render('Components/DefaultPageHeader') ?>
+<?php
+View::render(
+    view: 'Components/DefaultPageHeader',
+    pageData: [
+        'title' => 'Fizzbuzz!',
+        'stylesheets' => ['/css/fizzbuzz.css']
+    ]
+);
+?>
+
 <?php View::render('Components/Navbar') ?>
 
-<main>
-    <style>
-        @scope {
-            ul {
-                height: 400px;
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-            }
-
-            li {
-                list-style-type: none;
-                margin: 10px;
-            }
-
-            .red {
-                color: red;
-                font-weight: bold;
-            }
-
-            .blue {
-                color: var(--arf-blue);
-                font-weight: bold;
-            }
-
-            .green {
-                color: green;
-                font-weight: bold;
-            }
-        }
-    </style>
-
+<main id="fizzbuzz">
     <h1>Fizzbuzz!</h1>
     <ul>
-
-    <?php foreach (range(1, $fizzbuzz->count) as $number): ?>
-        <li class="<?= Safe::html( $fizzbuzz->getFizzbuzzClass($number) ) ?>">
-            <?= Safe::html( $fizzbuzz->getFizzbuzzValue($number) ) ?>
+<?php foreach (range(1, $fizzbuzz->count) as $number): ?>
+        <li class="<?= Safe::html($fizzbuzz->getFizzbuzzClass($number)) ?>">
+            <?= Safe::html($fizzbuzz->getFizzbuzzValue($number) . PHP_EOL) ?>
         </li>
-    <?php endforeach ?>
-
-
+<?php endforeach ?>
     </ul>
 </main>
 

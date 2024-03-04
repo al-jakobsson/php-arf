@@ -3,8 +3,13 @@
 namespace Views\Components;
 
 use Arf\Safe;
+use Arf\View;
 
-/** @var string $title pageData -- The title of the page. */
+/**
+ * pageData:
+ * @var string $title The title of the page.
+ * @var string[] $stylesheets List of urls to CSS stylesheets to include.
+ */
 
 ?>
 
@@ -14,6 +19,7 @@ use Arf\Safe;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= Safe::html($title ?? "Title") ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <?php View::includeStylesheets($stylesheets ?? []); ?>
+
 </head>
 <body>
