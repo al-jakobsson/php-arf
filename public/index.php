@@ -9,6 +9,7 @@
 /**
  * @section Register the Arf Autoloader
  */
+
 require_once __DIR__ . '/../app/Arf/Autoload.php';
 Arf\Autoload::register();
 
@@ -18,7 +19,6 @@ Arf\Autoload::register();
  */
 
 use Arf\Router;
-
 
 $router = new Router();
 $router->dispatch();

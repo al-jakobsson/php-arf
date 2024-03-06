@@ -8,22 +8,16 @@ use Models\User;
 
 /**
  * pageData:
+ * @var string $title The page title
+ * @var string[] $stylesheets List of urls to stylesheets to include
  * @var User $user The user to show
  */
 
 ?>
 
-<?php
-View::render(
-    view: 'Components/DefaultPageHeader',
-    pageData: [
-        'title' => 'User ' . $user->id,
-        'stylesheets' => ['/css/user.css']
-    ]
-);
-?>
+<?php View::render('Components/DefaultPageHeader', ['title' => $title, 'stylesheets' => $stylesheets]); ?>
 
-<?php View::render(view: 'Components/Navbar'); ?>
+<?php View::render('Components/Navbar'); ?>
 
 <main>
     <nav class="crumbs">
@@ -41,7 +35,7 @@ View::render(
     </ul>
 </main>
 
-<?php View::render(view: 'Components/DefaultPageFooter'); ?>
+<?php View::render('Components/DefaultPageFooter'); ?>
 
 
 

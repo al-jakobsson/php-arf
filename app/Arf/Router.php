@@ -2,15 +2,11 @@
 
 namespace Arf;
 
-use Arf\Route;
-
 class Router
 {
     public array $routes;
 
-    public function __construct(
-
-    )
+    public function __construct()
     {
         $this->routes = include(__DIR__ . '/../Routes/Routes.php');
     }
@@ -38,7 +34,7 @@ class Router
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }
 
-    public function getRequestURL()
+    public function getRequestURL(): string
     {
         $protocol = $this->getProtocol();
         $host = $this->getHost();
@@ -47,7 +43,7 @@ class Router
         return $protocol . $host . $uri;
     }
 
-    public function dispatch()
+    public function dispatch(): void
     {
         $requestMethod = $this->getMethod();
         $requestPath = $this->getURI();

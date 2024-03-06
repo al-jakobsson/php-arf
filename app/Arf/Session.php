@@ -30,14 +30,16 @@ class Session
         }
     }
 
-    public function getCSRFToken(): mixed
+    public static function getCSRFToken(): mixed
     {
         return $_SESSION['csrf_token'] ?? null;
     }
 
-    public function validateCSRFToken($token): bool
+    public static function validCSRFToken(): bool
     {
-        return isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token'];
+        return
+            isset($_SESSION['csrf_token'], $_POST['csrf_token'])
+            && $_POST['csrf_token']  === $_SESSION['csrf_token'];
     }
 
 }

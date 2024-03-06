@@ -6,4 +6,4 @@ namespace Views\Components;
 
 ?>
 
-<input type="hidden" value="<?= $CSRFToken ?>">
+<input type="hidden" name="csrf_token" value="<?= $CSRFToken ?>">

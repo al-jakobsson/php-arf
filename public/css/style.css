@@ -38,3 +38,17 @@ main {
         padding: 10px;
     }
 }
+
+div.form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+p.flash-message.success {
+    background-color: lightgreen;
+}
+
+p.flash-message.failed {
+    background-color: lightcoral;
+}

@@ -34,6 +34,6 @@ class Safe
     public static function csrf(): void
     {
         $CSRFToken = $_SESSION['csrf_token'];
-        View::render('Components/CSRFToken', ['csrf_token' => $CSRFToken]);
+        View::render('Components/CSRFToken', ['CSRFToken' => $CSRFToken]);
     }
 }

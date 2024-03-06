@@ -89,7 +89,28 @@ class User
             throw new PDOException($e->getMessage(), (int)$e->getCode());
         }
     }
-    
+
+    public static function createUser(string $name, string $email): StatusMessage
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "INSERT INTO Users (user_name, user_email, user_created_at) VALUES (:name, :email, NOW())";
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $success = $stmt->execute();
+
+            return $success
+                ? new StatusMessage(true, "User created successfully")
+                : new StatusMessage(false, "Failed to create user");
+
+        } catch (PDOException $e) {
+            return new StatusMessage(false, "Database error: {$e->getMessage()}");
+        }
+    }
+
+
     // Implement other methods here
 
 }

@@ -58,13 +58,14 @@ class View
      */
     public static function render(string $view, array $pageData = []): void
     {
-//        extract($pageData);
+        extract($pageData);
 
         $filePath = __DIR__ . "/../Views/" . $view . ".php";
 
         if (file_exists($filePath)) {
-            $content = SealTemplateEngine::parse($filePath, $pageData);
-            echo $content;
+//            $content = SealTemplateEngine::parse($filePath, $pageData);
+//            echo $content;
+            include($filePath);
         } else {
             // handle errors
             echo "error: could not find view at $filePath";
@@ -72,22 +73,7 @@ class View
     }
 
     /**
-     * Render full page with header and optional additional components
-     *
-     * @param PageConfiguration $config
-     * @return void
-     */
-    public static function renderPage(PageConfiguration $config): void
-    {
-        self::render($config->header, ['title' => $config->title]);
-        self::renderComponents($config->beforeContent);
-        self::render($config->view, $config->pageData);
-        self::renderComponents($config->afterContent);
-        self::render($config->footer);
-    }
-
-    /**
-     * Include
+     * Include stylesheets in view with default stylesheet
      * @param string[] $stylesheets Url to stylesheet
      * @return void
      */
@@ -101,14 +87,4 @@ class View
             echo "<link rel='stylesheet' href='$stylesheet'>";
         }
     }
-
-    private static function renderComponents(array $components): void
-    {
-        foreach ($components as $component => $data) {
-            self::render($component, $data);
-        }
-    }
-
-
-
 }
